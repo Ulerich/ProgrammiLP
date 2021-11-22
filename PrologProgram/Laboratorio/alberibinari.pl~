@@ -1,0 +1,29 @@
+is_node(void).
+is_node(node(_Key, _Value, NLeft, NRight)) :-
+    is_node(NLeft),
+    is_node(NRight).
+%albero vuoto
+
+is_leaf(node(_K, _V, void, void)).
+
+node_search(node(Key, Value, _L, _R), Key, Value) :- !.
+
+node_search(node(NK, _, NL, NR), Key, Value) :-
+    Key < NK, !,
+    node_search(NL, Key, Value).
+
+node_search(node(NK, _, NL, NR), Key, Value) :-
+    Key > NK, !,
+    node_search(NR, Key, Value).
+    
+node_insert(void, K, V, node(K, V, void, void)). %caso base
+node_insert(node(NK, _, NL, NR), NK, node(NK, V, NL, NR)). %passi induttivi, questo è per quando la key c'è già e sostituisco il valore
+node_insert(node(Key, Value, _L, _R), Key, Value,
+	    node(NK, NV, NL, NewR)) :-
+    NK < Key,
+    node_insert(NR, Key, Value, NewR).
+
+node_insert(node(Key, Value, _L, _R), Key, Value,
+	    node(NK, NV, NewL, NR)) :-
+    NK > Key,
+    node_insert(NR, Key, Value, NewL).

@@ -1,0 +1,4 @@
+pesce(X) :- animale(X), ha_le_squame(X).
+
+harvey(animale, pelo).
+goldy(animale, ha_le_squame).
