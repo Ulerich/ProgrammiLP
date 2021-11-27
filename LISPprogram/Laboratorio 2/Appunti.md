@@ -14,3 +14,7 @@ defparameter -> per definire un parametro
 setq -> simile a defparameter, ma per le liste
 
 let -> assegnazione di una o più variabili localmente (dentro una funzione)
+
+eval -> prende come input una lista e la valuta
+
+(eval '(+ 1 2)) dà come output 3
