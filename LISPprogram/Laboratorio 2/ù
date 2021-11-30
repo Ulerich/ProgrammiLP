@@ -1,3 +1,0 @@
-(defun inverte (lista)
-  (cond ((null lista) lista)
-	(T (
