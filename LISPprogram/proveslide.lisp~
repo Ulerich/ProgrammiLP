@@ -1,0 +1,4 @@
+(defun testcond (x)
+  (cond ((> x 0) x)
+	((eql (x 42)) ("truth"))
+	(T (- x))))

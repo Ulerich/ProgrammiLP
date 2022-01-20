@@ -1,0 +1,16 @@
+(defun sum (l)
+  (if (null l)
+      0
+    (+ (first l) (sum (rest l)))))
+
+(defun count-atoms(x)
+  (cond ((null x) 0)
+        ((atom x) 1)
+        (T (+ (count-atoms(first x))
+              (count-atoms(rest x))))))
+
+(defun scala-lista (l fattore)
+  (if (null l)
+      nil
+    (cons (* (car l) fattore)
+          (scala-lista (cdr l) fattore))))

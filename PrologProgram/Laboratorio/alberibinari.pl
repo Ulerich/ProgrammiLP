@@ -15,7 +15,7 @@ node_search(node(NK, _, NL, NR), Key, Value) :-
 node_search(node(NK, _, NL, NR), Key, Value) :-
     Key > NK, !,
     node_search(NR, Key, Value).
-    
+
 node_insert(void, K, V, node(K, V, void, void)). %caso base
 node_insert(node(NK, _, NL, NR), NK, node(NK, V, NL, NR)). %passi induttivi, questo è per quando la key c'è già e sostituisco il valore
 node_insert(node(Key, Value, _L, _R), Key, Value,
@@ -59,5 +59,3 @@ node_print(node(Key, Value, Left, Right), Level) :-
     L1 is Level + 4,
     node_print(Left, L1),
     node_print(Right, L1).
-
-    
