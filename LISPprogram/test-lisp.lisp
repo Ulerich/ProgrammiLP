@@ -73,12 +73,22 @@
   (* x x))
 
 (defun f (x y)
-   ((lambda (a b)
-	  (+ (* x (quadrato a))
-	     (* y b)
-	     (* a b)))
-	(+ 1 (* x y))
-    (- 1 y)))
+  ((lambda (a b)
+     (+ (* x (quadrato a))
+	(* y b)
+	(* a b)))
+   (+ 1 (* x y))
+   (- 1 y)))
+
+(defun let-f (x y)
+  (let ((a (+ 1 x))
+	(b (+ 1 y)))
+    (+ a y)))
+
+(defun lambda-f (x y)
+  ((lambda (a b)
+     (+ a x))
+   (+ x y)))
 
 (defun lf (x y)
   ((lambda (a b)
@@ -98,4 +108,39 @@
                 (filter predicato (cdr lista)))
 		     (T (filter predicato (cdr lista))))))
 
-(defun foo (a 
+(defun listanum (l x)
+  (cond ((eql (car l) x) x)
+	((null (car l)) (cons l (cdr l)))
+	(T (append (listanum (cdr l) x) (listanum((car l) x))))))
+
+(defun list-ref (n l)
+  (if (<= n 0)
+      (car l)
+      (list-ref (- n 1) (cdr l))))
+
+(defun lunghezza (l)
+  (if (null (car l))
+      0
+      (+ 1 (lunghezza (cdr l)))))
+
+(defun prof (l)
+  (cond ((null l) 1)
+	((atom l) 0)
+	(T (max (+ 1 (prof (car l)))
+		   (prof (cdr l))))))
+
+(defun prof2 (x) ;;equivalente con first e rest
+	(cond ((null x) 1)
+	      ((atom x) 0)
+	      (t (max (+ 1 (prof2 (first x)))
+	              (prof2 (rest x))))))
+
+(defun circulate (lst direction)
+	(cond ((atom lst) lst)
+	      ((null lst) nil)
+	      ((eq direction 'left)
+	       (append (cdr lst) (list (car lst))))
+	      ((eq direction 'right)
+	       (cons (last-l lst) (but-last lst)))
+	      (T lst) ))
+
